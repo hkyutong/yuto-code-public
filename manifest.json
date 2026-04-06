@@ -1,0 +1,20 @@
+{
+  "product": "Yuto Code",
+  "channel": "stable",
+  "version": "0.1.3",
+  "tag": "v0.1.3",
+  "repo": "hkyutong/yuto-code-public",
+  "releasedAt": "2026-04-06T18:27:22Z",
+  "assets": {
+    "macos-arm64": {
+      "name": "yuto-macos-arm64",
+      "url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.3/yuto-macos-arm64",
+      "sha256Url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.3/yuto-macos-arm64.sha256"
+    },
+    "linux-x64": {
+      "name": "yuto-linux-x64",
+      "url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.3/yuto-linux-x64",
+      "sha256Url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.3/yuto-linux-x64.sha256"
+    }
+  }
+}
