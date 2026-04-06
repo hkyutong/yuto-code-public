@@ -13,7 +13,7 @@ Usage:
   install.sh [--version <version>] [--install-dir <dir>] [--repo <owner/name>]
 
 Options:
-  --version <version>      Install a specific version, for example 0.1.3 or v0.1.3
+  --version <version>      Install a specific version, for example 1.2.3 or v1.2.3
   --install-dir <dir>     Target install directory (default: ~/.local/bin)
   --repo <owner/name>     Override release repo (default: hkyutong/yuto-code-public)
   -h, --help              Show this help

@@ -15,7 +15,7 @@ curl -fsSL https://raw.githubusercontent.com/hkyutong/yuto-code-public/main/inst
 Install a specific version:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hkyutong/yuto-code-public/main/install.sh | bash -s -- --version 0.1.3
+curl -fsSL https://raw.githubusercontent.com/hkyutong/yuto-code-public/main/install.sh | bash -s -- --version 0.1.4
 ```
 
 Install to a custom directory:
