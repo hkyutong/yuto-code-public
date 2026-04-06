@@ -50,12 +50,3 @@ yuto --version
 
 - macOS arm64
 - Linux x64
-
-## 发布资产
-
-每个公开版本都包含：
-
-- `yuto-macos-arm64`
-- `yuto-linux-x64`
-- 对应的 `.sha256`
-- 仓库根目录里的 `manifest.json`
