@@ -1,8 +1,8 @@
 # Yuto Code
 
-Yuto Code is a terminal coding assistant for macOS and Linux.
+Public installers and release binaries for Yuto Code.
 
-This repository is the public distribution channel for installers and release binaries. The source repository stays private.
+The source repository stays private. This repository is the public install and update channel.
 
 ## Install
 
@@ -15,7 +15,7 @@ curl -fsSL https://raw.githubusercontent.com/hkyutong/yuto-code-public/main/inst
 Install a specific version:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hkyutong/yuto-code-public/main/install.sh | bash -s -- --version 0.1.4
+curl -fsSL https://raw.githubusercontent.com/hkyutong/yuto-code-public/main/install.sh | bash -s -- --version <version>
 ```
 
 Install to a custom directory:
@@ -26,7 +26,7 @@ curl -fsSL https://raw.githubusercontent.com/hkyutong/yuto-code-public/main/inst
 
 ## Update
 
-After Yuto Code is installed, upgrade in place with:
+Install the latest public release in place:
 
 ```bash
 yuto update
@@ -36,6 +36,18 @@ Check whether a newer release is available:
 
 ```bash
 yuto update --check
+```
+
+Install a specific public release:
+
+```bash
+yuto update <version>
+```
+
+## Verify
+
+```bash
+yuto --version
 ```
 
 ## Supported platforms
