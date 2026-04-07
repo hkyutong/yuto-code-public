@@ -54,11 +54,11 @@ download() {
   src="$1"
   dest="$2"
   if command -v curl >/dev/null 2>&1; then
-    curl -fsSL "$src" -o "$dest"
+    curl --retry 4 --retry-delay 2 --retry-all-errors --connect-timeout 20 --max-time 900 -fsSL "$src" -o "$dest"
     return
   fi
   if command -v wget >/dev/null 2>&1; then
-    wget -qO "$dest" "$src"
+    wget --tries=4 --waitretry=2 --timeout=30 -qO "$dest" "$src"
     return
   fi
   echo "curl or wget is required to install Yuto Code." >&2
