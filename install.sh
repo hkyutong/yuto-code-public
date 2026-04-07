@@ -7,16 +7,16 @@ INSTALL_DIR="${YUTO_INSTALL_DIR:-$HOME/.local/bin}"
 
 usage() {
   cat <<'EOF'
-Install Yuto Code from the public release repository.
+从公开发布仓库安装 Yuto Code。
 
-Usage:
+用法：
   install.sh [--version <version>] [--install-dir <dir>] [--repo <owner/name>]
 
-Options:
-  --version <version>      Install a specific version, for example 1.2.3 or v1.2.3
-  --install-dir <dir>     Target install directory (default: ~/.local/bin)
-  --repo <owner/name>     Override release repo (default: hkyutong/yuto-code-public)
-  -h, --help              Show this help
+参数：
+  --version <version>     安装指定版本，例如 1.2.3 或 v1.2.3
+  --install-dir <dir>     安装目录（默认：~/.local/bin）
+  --repo <owner/name>     覆盖公开发布仓库（默认：hkyutong/yuto-code-public）
+  -h, --help              显示帮助
 EOF
 }
 
@@ -24,17 +24,17 @@ while [ "$#" -gt 0 ]; do
   case "$1" in
     --version)
       shift
-      [ "$#" -gt 0 ] || { echo "missing value for --version" >&2; exit 1; }
+      [ "$#" -gt 0 ] || { echo "--version 缺少参数值" >&2; exit 1; }
       VERSION="$1"
       ;;
     --install-dir)
       shift
-      [ "$#" -gt 0 ] || { echo "missing value for --install-dir" >&2; exit 1; }
+      [ "$#" -gt 0 ] || { echo "--install-dir 缺少参数值" >&2; exit 1; }
       INSTALL_DIR="$1"
       ;;
     --repo)
       shift
-      [ "$#" -gt 0 ] || { echo "missing value for --repo" >&2; exit 1; }
+      [ "$#" -gt 0 ] || { echo "--repo 缺少参数值" >&2; exit 1; }
       REPO="$1"
       ;;
     -h|--help)
@@ -42,7 +42,7 @@ while [ "$#" -gt 0 ]; do
       exit 0
       ;;
     *)
-      echo "unknown argument: $1" >&2
+      echo "未知参数：$1" >&2
       usage >&2
       exit 1
       ;;
@@ -61,7 +61,7 @@ download() {
     wget --tries=4 --waitretry=2 --timeout=30 -qO "$dest" "$src"
     return
   fi
-  echo "curl or wget is required to install Yuto Code." >&2
+  echo "安装 Yuto Code 需要 curl 或 wget。" >&2
   exit 1
 }
 
@@ -69,7 +69,7 @@ verify_sha256() {
   checksum_file="$1"
   artifact_file="$2"
   expected="$(awk '{print $1}' "$checksum_file")"
-  [ -n "$expected" ] || { echo "failed to read checksum" >&2; exit 1; }
+  [ -n "$expected" ] || { echo "读取校验和失败" >&2; exit 1; }
 
   if command -v sha256sum >/dev/null 2>&1; then
     actual="$(sha256sum "$artifact_file" | awk '{print $1}')"
@@ -78,14 +78,14 @@ verify_sha256() {
   elif command -v openssl >/dev/null 2>&1; then
     actual="$(openssl dgst -sha256 "$artifact_file" | awk '{print $NF}')"
   else
-    echo "sha256sum, shasum, or openssl is required to verify the download." >&2
+    echo "校验下载文件需要 sha256sum、shasum 或 openssl。" >&2
     exit 1
   fi
 
   [ "$expected" = "$actual" ] || {
-    echo "checksum mismatch for $(basename "$artifact_file")" >&2
-    echo "expected: $expected" >&2
-    echo "actual:   $actual" >&2
+    echo "$(basename "$artifact_file") 的校验和不匹配" >&2
+    echo "期望值：$expected" >&2
+    echo "实际值：$actual" >&2
     exit 1
   }
 }
@@ -95,8 +95,8 @@ case "$uname_s" in
   Darwin) OS_NAME="macos" ;;
   Linux) OS_NAME="linux" ;;
   *)
-    echo "unsupported platform: $uname_s" >&2
-    echo "Yuto Code currently supports macOS and Linux." >&2
+    echo "暂不支持当前平台：$uname_s" >&2
+    echo "Yuto Code 当前仅支持 macOS 和 Linux。" >&2
     exit 1
     ;;
 esac
@@ -106,7 +106,7 @@ case "$uname_m" in
   arm64|aarch64) ARCH_NAME="arm64" ;;
   x86_64|amd64) ARCH_NAME="x64" ;;
   *)
-    echo "unsupported architecture: $uname_m" >&2
+    echo "暂不支持当前架构：$uname_m" >&2
     exit 1
     ;;
 esac
@@ -115,7 +115,7 @@ ASSET_NAME="yuto-${OS_NAME}-${ARCH_NAME}"
 case "$ASSET_NAME" in
   yuto-macos-arm64|yuto-linux-x64) ;;
   *)
-    echo "no published binary for ${OS_NAME}/${ARCH_NAME} yet." >&2
+    echo "当前还没有 ${OS_NAME}/${ARCH_NAME} 的公开二进制。" >&2
     exit 1
     ;;
 esac
@@ -140,7 +140,7 @@ trap 'rm -rf "$TMP_DIR"' EXIT INT TERM HUP
 ARTIFACT_PATH="${TMP_DIR}/${ASSET_NAME}"
 CHECKSUM_PATH="${TMP_DIR}/${ASSET_NAME}.sha256"
 
-echo "Downloading Yuto Code ${DISPLAY_VERSION} for ${OS_NAME}/${ARCH_NAME}..."
+echo "正在下载 Yuto Code ${DISPLAY_VERSION}（${OS_NAME}/${ARCH_NAME}）..."
 download "$ASSET_URL" "$ARTIFACT_PATH"
 download "$CHECKSUM_URL" "$CHECKSUM_PATH"
 verify_sha256 "$CHECKSUM_PATH" "$ARTIFACT_PATH"
@@ -154,12 +154,12 @@ else
   chmod 0755 "$TARGET_PATH"
 fi
 
-echo "Installed Yuto Code to ${TARGET_PATH}"
+echo "已安装到 ${TARGET_PATH}"
 "$TARGET_PATH" --version || true
 
 case ":$PATH:" in
   *":$INSTALL_DIR:"*) ;;
   *)
-    echo "Add ${INSTALL_DIR} to PATH to run 'yuto' directly."
+    echo "把 ${INSTALL_DIR} 加到 PATH 后，就可以直接运行 yuto。"
     ;;
 esac
