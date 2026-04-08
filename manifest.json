@@ -1,20 +1,20 @@
 {
   "product": "Yuto Code",
   "channel": "stable",
-  "version": "0.1.12",
-  "tag": "v0.1.12",
+  "version": "0.1.13",
+  "tag": "v0.1.13",
   "repo": "hkyutong/yuto-code-public",
-  "releasedAt": "2026-04-07T18:29:31Z",
+  "releasedAt": "2026-04-08T19:02:02Z",
   "assets": {
     "macos-arm64": {
       "name": "yuto-macos-arm64",
-      "url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.12/yuto-macos-arm64",
-      "sha256Url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.12/yuto-macos-arm64.sha256"
+      "url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.13/yuto-macos-arm64",
+      "sha256Url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.13/yuto-macos-arm64.sha256"
     },
     "linux-x64": {
       "name": "yuto-linux-x64",
-      "url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.12/yuto-linux-x64",
-      "sha256Url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.12/yuto-linux-x64.sha256"
+      "url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.13/yuto-linux-x64",
+      "sha256Url": "https://github.com/hkyutong/yuto-code-public/releases/download/v0.1.13/yuto-linux-x64.sha256"
     }
   }
 }
