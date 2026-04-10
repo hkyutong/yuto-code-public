@@ -46,6 +46,12 @@ yuto update <version>
 yuto --version
 ```
 
+## 公开发布
+
+```text
+https://github.com/hkyutong/yuto-code-public/releases
+```
+
 ## 支持平台
 
 - macOS arm64
